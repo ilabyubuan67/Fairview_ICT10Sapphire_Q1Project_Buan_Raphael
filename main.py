@@ -1,24 +1,32 @@
+from pyscript import display, document
+
+# receipt generator (from skills test)
 def order(e):
-    BeefUdon_price = 240
-    CurryUdon_price = 290
-    KakeUdon_price = 125
+    # prices (php)
+    kakeudon_presyo = 140
+    curryudon_presyo = 270
+    beefudon_presyo = 235
 
-    ordered_beefudon = float(document.getElementById("beefudon").checked)
-    ordered_curryudon = float(document.getElementById("curryudon").checked)
-    ordered_kakeudon = float(document.getElementById("kakeudon").checked)
 
-    subtotal = ((ordered_beefudon * BeefUdon_price) + (ordered_curryudon * CurryUdon_price) + (ordered_kakeudon * KakeUdon_price))
+    subtotal = (
+        (kakeudon_presyo * 140) + (curryudon_presyo * 270) + (beefudon_presyo * 235)
+    )
+
 
     vat = subtotal * 0.12
 
+    # total
     total = subtotal + vat
 
-    document.getElementById("subtotal").innerText = f"₱{subtotal:.2f}"
-    document.getElementById("vat").innerText = f"₱{vat:.2f}"
-    document.getElementById("total").innerText = f"₱{total:.2f}"
+   
+    document.getElementById("subtotal").innerText = f"₱{subtotal}"
+    document.getElementById("vat").innerText = f"₱{vat}"
+    document.getElementById("total").innerText = f"₱{total}"
+
 
 
 def generate_sku(e):
+   
     document.getElementById("div_id").innerHTML = " "
 
     category_var = document.getElementById("category").value
@@ -32,4 +40,5 @@ def generate_sku(e):
         + "-"
         + str(stock_qty)
     )
-    display("SKU: " + SKU_name, target="div_id")
+
+    display("SKU: ", SKU_name, target="div_id")
